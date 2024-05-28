@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set vars
         run: |
           if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
@@ -28,6 +29,7 @@ jobs:
           else
           echo "staging" > .workspace
           fi
+
       - name: Push to ECR
         env:
           AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
