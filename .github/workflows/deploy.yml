@@ -7,12 +7,12 @@ on:
       - prod
 
 jobs:
-  # test-lint:
-  #   uses: ./.github/workflows/test-and-lint.yml
-  #   name: Test and Lint
-  #   secrets:
-  #     DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
-  #     DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  test-lint:
+    uses: ./.github/workflows/test-and-lint.yml
+    name: Test and Lint
+    secrets:
+      DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
   deploy:
     name: Deploy
@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set vars
         run: |
           if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
@@ -28,6 +29,7 @@ jobs:
           else
           echo "staging" > .workspace
           fi
+
       - name: Push to ECR
         env:
           AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
