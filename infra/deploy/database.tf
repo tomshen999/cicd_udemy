@@ -35,15 +35,15 @@ resource "aws_security_group" "rds" {
 }
 
 resource "aws_db_instance" "main" {
-  identifier                 = "${local.prefix}-db"
-  db_name                    = "recipe"
-  allocated_storage          = 20
+  identifier           = "${local.prefix}-db"
+  db_name              = "recipe"
+  allocated_storage    = 20
+  engine               = "postgres"
+  # parameter_group_name = "default.postgres16"
+  engine_version             = "16.2"
+  instance_class       = "db.t3.micro"
+  ca_cert_identifier   = "rds-ca-2019"
   # storage_type               = "gp2"
-  engine                     = "postgres"
-  parameter_group_name      = "default.postgres16"
-  instance_class             = "db.t3.micro"
-  ca_cert_identifier        = "rds-ca-2019"
-  # engine_version             = "16.2"
   username                   = var.db_username
   password                   = var.db_password
   db_subnet_group_name       = aws_db_subnet_group.main.name
