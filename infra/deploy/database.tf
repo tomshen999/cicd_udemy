@@ -41,9 +41,9 @@ resource "aws_db_instance" "main" {
   # storage_type               = "gp2"
   engine                     = "postgres"
   parameter_group_name      = "default.postgres16"
-  # engine_version             = "16.2"
   instance_class             = "db.t3.micro"
   ca_cert_identifier        = "rds-ca-2019"
+  # engine_version             = "16.2"
   username                   = var.db_username
   password                   = var.db_password
   db_subnet_group_name       = aws_db_subnet_group.main.name
