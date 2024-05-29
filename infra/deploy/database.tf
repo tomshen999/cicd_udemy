@@ -39,10 +39,10 @@ resource "aws_db_instance" "main" {
   db_name              = "recipe"
   allocated_storage    = 20
   engine               = "postgres"
-  # parameter_group_name = "default.postgres16"
   engine_version             = "16.2"
   instance_class       = "db.t3.micro"
   ca_cert_identifier   = "rds-ca-2019"
+  # parameter_group_name = "default.postgres16"
   # storage_type               = "gp2"
   username                   = var.db_username
   password                   = var.db_password
